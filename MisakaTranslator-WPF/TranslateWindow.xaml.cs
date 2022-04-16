@@ -309,7 +309,10 @@ namespace MisakaTranslator_WPF
                     if (Convert.ToBoolean(Common.appSettings.EachRowTrans) == false)
                     {
                         //不勾选分行翻译时
-                        srcText = srcText.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ");
+                        if (Common.UsingSrcLang == "en")
+                           srcText = srcText.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ");
+                        else
+                           srcText = srcText.Replace("\n", "").Replace("\t", "").Replace("\r", "");
                     }
                     TranslateText(srcText, isRenew);
                 }
