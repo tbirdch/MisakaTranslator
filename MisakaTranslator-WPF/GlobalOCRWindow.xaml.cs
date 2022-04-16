@@ -141,6 +141,11 @@ namespace MisakaTranslator_WPF
                 //5.提交翻译
                 string transRes1 = "";
                 string transRes2 = "";
+                if (Convert.ToBoolean(Common.appSettings.EachRowTrans) == false)
+                {
+                    //不勾选分行翻译时
+                    res = res.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ");
+                }
                 if (translator1 != null)
                 {
                     transRes1 = await translator1.TranslateAsync(res, Common.UsingDstLang, srclang);
