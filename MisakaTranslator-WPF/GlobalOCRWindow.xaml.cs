@@ -144,7 +144,10 @@ namespace MisakaTranslator_WPF
                 if (Convert.ToBoolean(Common.appSettings.EachRowTrans) == false)
                 {
                     //不勾选分行翻译时
-                    res = res.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ");
+                    if (srclang == "en")
+                        res = res.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ");
+                    else
+                        res = res.Replace("\n", "").Replace("\t", "").Replace("\r", "");
                 }
                 if (translator1 != null)
                 {
