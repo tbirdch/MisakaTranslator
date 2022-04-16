@@ -305,7 +305,14 @@ namespace MisakaTranslator_WPF
                 if (Common.appSettings.OCRsource == "BaiduFanyiOCR")
                     Application.Current.Dispatcher.Invoke(() => {FirstTransText.Text = srcText;});
                 else
+                {
+                    if (Convert.ToBoolean(Common.appSettings.EachRowTrans) == false)
+                    {
+                        //不勾选分行翻译时
+                        srcText = srcText.Replace("\n", " ").Replace("\t", " ").Replace("\r", " ");
+                    }
                     TranslateText(srcText, isRenew);
+                }
             }
             else if (!string.IsNullOrEmpty(Common.ocr.GetLastError()))
                 Growl.WarningGlobal(Common.appSettings.OCRsource + " Error: " + Common.ocr.GetLastError());
